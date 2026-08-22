@@ -1,0 +1,51 @@
+/* Shared styles for jstnc.dev */
+
+:root {
+  --bg: #0e0e10;
+  --fg: #f2f2f2;
+  --muted: #8a8a8f;
+  --line: #262626;
+  --link: #b8b8bf;
+  --link-hover: #ffffff;
+
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --transition: 0.15s ease;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  /* no rubber-band bounce past the top or bottom of the page */
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  font-weight: 400;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+}
+
+a:focus-visible {
+  outline: 1px solid var(--link-hover);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a { transition: none; }
+}

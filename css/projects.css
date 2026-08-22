@@ -1,0 +1,113 @@
+/* Projects index — layout on top of base.css */
+
+body {
+  padding: 6rem 1.5rem;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 3rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--fg);
+}
+
+h1::before {
+  content: "~/";
+  color: var(--muted);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 2.25rem;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.rule {
+  flex: 1;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-0.25rem);
+}
+
+p {
+  margin: 0.4rem 0 0;
+}
+
+.desc { color: var(--fg); }
+
+.date,
+.meta { color: var(--muted); }
+
+.meta a { color: var(--muted); }
+
+.back {
+  display: inline-block;
+  margin-top: 3rem;
+  color: var(--muted);
+}
+
+/* Title with no public repo — reveals a note on hover/focus */
+
+.closed {
+  position: relative;
+  color: var(--link);
+  border-bottom: 1px dotted var(--line);
+  cursor: help;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.closed:hover,
+.closed:focus-visible {
+  color: var(--link-hover);
+  border-bottom: 1px solid var(--link-hover);
+}
+
+.closed:focus-visible {
+  outline: 1px solid var(--link-hover);
+  outline-offset: 3px;
+}
+
+.tip {
+  position: absolute;
+  bottom: calc(100% + 0.6rem);
+  left: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: min(20rem, 70vw);
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--muted);
+  cursor: default;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.closed:hover .tip,
+.closed:focus-visible .tip {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closed,
+  .tip { transition: none; }
+}
