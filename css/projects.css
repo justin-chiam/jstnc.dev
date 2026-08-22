@@ -41,7 +41,7 @@ li {
 
 .rule {
   flex: 1;
-  border-bottom: 1px dotted var(--line);
+  border-bottom: 1px solid var(--line);
   transform: translateY(-0.25rem);
 }
 
@@ -67,7 +67,7 @@ p {
 .closed {
   position: relative;
   color: var(--link);
-  border-bottom: 1px dotted var(--line);
+  border-bottom: 1px solid transparent;
   cursor: help;
   transition: color var(--transition), border-color var(--transition);
 }
