@@ -74,3 +74,11 @@ h1 {
 .keyword {
   color: var(--link);
 }
+
+.webring {
+  display: block;
+  width: 60%;
+  height: 56px;
+  margin: 0 auto;
+  border: 0;
+}

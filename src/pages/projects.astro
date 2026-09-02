@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/projects.css';
+
+type Project = {
+    name: string;
+    href?: string;
+    note?: string;
+    date: string;
+    desc: string;
+    meta: string;
+};
+
+const projects: Project[] = [
+    {
+        name: 'pocketvalue',
+        href: 'https://github.com/justin-chiam/pocketvalue',
+        date: 'july 2026',
+        desc: 'Photograph an old device and get a plan to repair, resell, trade in, donate or recycle. Won First Year Prize at the CSESoc x Atlassian hackathon.',
+        meta: 'expo, typescript, express.js, google gemini',
+    },
+    {
+        name: 'plot',
+        note: 'Oops! This project is currently closed source...',
+        date: 'july 2026 — present',
+        desc: 'Event management via GitOps for university societies.',
+        meta: 'typescript, python, github actions',
+    },
+    {
+        name: 'wlday',
+        href: 'https://github.com/linuxunsw/wlday',
+        date: 'july 2026',
+        desc: 'Personality quiz to figure out which Linux distro best fits you.',
+        meta: 'svelte, typescript',
+    },
+    {
+        name: 'hack the harbour ctf',
+        href: 'https://www.linkedin.com/feed/update/urn:li:activity:7481535399048355840/',
+        date: 'july 2026',
+        desc: 'Placed 2nd of 70+ teams (280+ participants) on a 4-person team at Hack the Harbour, an intervarsity CTF hosted by the cybersecurity societies of USYD, UNSW, UTS and Macquarie University.',
+        meta: 'python, exiftool, cyberchef, burp suite',
+    },
+    {
+        name: 'course scraper',
+        href: 'https://github.com/justin-chiam/course-scraper',
+        date: 'may 2026',
+        desc: 'Scrapes the UNSW timetable and handbook so you can quickly explore electives and courses.',
+        meta: 'python',
+    },
+    {
+        name: 'moodle auto refresh',
+        href: 'https://github.com/justin-chiam/moodle-auto-refresh',
+        date: 'april 2026',
+        desc: 'Browser extension that automatically keeps your Moodle session alive to prevent being signed out.',
+        meta: 'javascript',
+    },
+    {
+        name: 'tilde',
+        href: 'https://github.com/justin-chiam/tilde',
+        date: 'august 2026',
+        desc: 'Minimal browser homepage with fast web shortcuts.',
+        meta: 'html',
+    },
+    {
+        name: 'kilo',
+        href: 'https://github.com/justin-chiam/kilo-text-editor',
+        date: 'may 2026',
+        desc: 'Minimal and lightweight terminal text editor.',
+        meta: 'c',
+    },
+];
+
+const slug = (name: string) => name.replace(/\s+/g, '-');
+---
+
+<Base title="Projects | jstnc.dev" description="Projects by Justin Chiam.">
+<main>
+  <h1>projects</h1>
+
+  <ul>
+    {projects.map((project) => (
+      <li>
+        <div class="row">
+          {project.href ? (
+            <a href={project.href}>{project.name}</a>
+          ) : (
+            <span class="closed" tabindex="0" aria-describedby={`${slug(project.name)}-note`}>
+              {project.name}<span class="tip" id={`${slug(project.name)}-note`} role="tooltip">{project.note}</span>
+            </span>
+          )}
+          <span class="rule"></span>
+          <span class="date">{project.date}</span>
+        </div>
+        <p class="desc">{project.desc}</p>
+        <p class="meta">{project.meta}</p>
+      </li>
+    ))}
+  </ul>
+
+  <a class="back" href="/">back</a>
+</main>
+</Base>
