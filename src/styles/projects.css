@@ -1,4 +1,4 @@
-/* Projects index — layout on top of base.css */
+/* Projects index — card grid on top of base.css */
 
 body {
   padding: 6rem 1.5rem;
@@ -6,7 +6,7 @@ body {
 }
 
 main {
-  max-width: 36rem;
+  max-width: 64rem;
   margin: 0 auto;
 }
 
@@ -23,38 +23,113 @@ h1::before {
   color: var(--muted);
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.75rem;
 }
 
-li {
-  margin-bottom: 2.25rem;
+/* Cards
+
+   Cards are <a> when the project has a public link and <article> when it does
+   not, so both branches are reset here. base.css gives every <a> a transparent
+   bottom border and recolours it on hover — left alone that underlines the
+   whole box and washes out the card text. */
+
+.project {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: inherit;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.project:hover,
+.project:focus-visible {
+  color: inherit;
+  border-color: var(--link-hover);
+  transform: scale(1.03);
+}
+
+.project:focus-visible {
+  outline: 1px solid var(--link-hover);
+  outline-offset: 3px;
+}
+
+.project-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg);
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding: 1rem;
 }
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.75rem;
+  justify-content: space-between;
+  gap: 0 0.75rem;
 }
 
-.rule {
-  flex: 1;
-  border-bottom: 1px solid var(--line);
-  transform: translateY(-0.25rem);
+.project h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--fg);
 }
 
-p {
+.project p {
   margin: 0.4rem 0 0;
 }
 
 .desc { color: var(--fg); }
 
-.date,
-.meta { color: var(--muted); }
+.date {
+  color: var(--muted);
+}
 
-.meta a { color: var(--muted); }
+/* margin-top:auto pins the divider and stack row to the bottom of every card,
+   so uneven description lengths still line up across the grid */
+
+.project hr {
+  margin: auto 0 0;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.project-stack img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+/* Fallback for a stack entry with no SVG in src/icons/stack/ */
+
+.stack-label {
+  font-size: 0.85em;
+  color: var(--muted);
+}
 
 .back {
   display: inline-block;
@@ -67,15 +142,13 @@ p {
 .closed {
   position: relative;
   color: var(--link);
-  border-bottom: 1px solid transparent;
   cursor: help;
-  transition: color var(--transition), border-color var(--transition);
+  transition: color var(--transition);
 }
 
 .closed:hover,
 .closed:focus-visible {
   color: var(--link-hover);
-  border-bottom: 1px solid var(--link-hover);
 }
 
 .closed:focus-visible {
@@ -89,12 +162,13 @@ p {
   left: 0;
   z-index: 1;
   width: max-content;
-  max-width: min(20rem, 70vw);
+  max-width: min(20rem, 60vw);
   padding: 0.5rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--bg);
   color: var(--muted);
+  font-weight: 400;
   cursor: default;
   opacity: 0;
   visibility: hidden;
@@ -107,7 +181,17 @@ p {
   visibility: visible;
 }
 
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .project,
   .closed,
   .tip { transition: none; }
+
+  .project:hover,
+  .project:focus-visible { transform: none; }
 }

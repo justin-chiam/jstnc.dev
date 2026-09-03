@@ -60,8 +60,6 @@
 
 html, body {
   margin: 0;
-  /* no rubber-band bounce past the top or bottom of the page */
-  overscroll-behavior: none;
 }
 
 body {
