@@ -1,7 +1,7 @@
 ---
 name: kilo
 date: may 2026
-order: 10
+order: 12
 description: "Minimal and lightweight terminal text editor."
 image: /images/projects/kilo.png
 stack: [c]
