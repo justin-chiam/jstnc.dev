@@ -16,6 +16,7 @@
     "check-html": "html-validate \"dist/**/*.html\""
   },
   "dependencies": {
+    "@playform/compress": "^0.2.5",
     "astro": "^7.2.10"
   },
   "allowScripts": {
