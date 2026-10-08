@@ -12,5 +12,7 @@ export default defineConfig({
     '/linkedin': 'https://www.linkedin.com/in/justin-chiam',
   },
 
-  integrations: [playformCompress()],
+  integrations: [playformCompress({
+    HTML: false,
+  })],
 });
