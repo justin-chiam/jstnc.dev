@@ -3,7 +3,7 @@ import { join, relative, resolve, dirname } from "node:path";
 
 const DIST = resolve("dist");
 
-async function htmlFiles(dir) {
+async function htmlFiles(dir: string): Promise<string[]> {
   const found = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
@@ -13,7 +13,7 @@ async function htmlFiles(dir) {
   return found;
 }
 
-async function exists(path) {
+async function exists(path: string): Promise<boolean> {
   try {
     await stat(path);
     return true;
@@ -22,7 +22,7 @@ async function exists(path) {
   }
 }
 
-async function resolves(path) {
+async function resolves(path: string): Promise<boolean> {
   if (path.endsWith("/")) return exists(join(path, "index.html"));
   return (
     (await exists(path)) ||
