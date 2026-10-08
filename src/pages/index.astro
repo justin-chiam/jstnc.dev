@@ -20,4 +20,17 @@ import '../styles/home.css';
         src="https://mrrrp.cat/ring/jstnc.dev/iframe?theme=dark"
         title="mrrrp.cat webring"
         loading="lazy"></iframe>
+    <script is:inline>
+        (() => {
+            const webring = document.querySelector('.webring');
+            const light = matchMedia('(prefers-color-scheme: light)');
+            const sync = () => {
+                const url = new URL(webring.src);
+                url.searchParams.set('theme', light.matches ? 'light' : 'dark');
+                if (url.href !== webring.src) webring.src = url.href;
+            };
+            sync();
+            light.addEventListener('change', sync);
+        })();
+    </script>
 </Base>

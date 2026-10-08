@@ -54,6 +54,19 @@
 
   --font-mono: "Roboto Mono", ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   --transition: 0.15s ease;
+
+  color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fafafa;
+    --fg: #111113;
+    --muted: #6b6b70;
+    --line: #e2e2e2;
+    --link: #4a4a50;
+    --link-hover: #000000;
+  }
 }
 
 * { box-sizing: border-box; }
